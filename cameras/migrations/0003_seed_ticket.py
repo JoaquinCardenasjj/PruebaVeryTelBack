@@ -42,7 +42,7 @@ def seed_tickets(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cameras', '0002_seed_cameras'), # Asegúrate que dependa de la carga de cámaras
+        ('cameras', '0002_seed_camera'), # Asegúrate que dependa de la carga de cámaras
     ]
 
     operations = [
