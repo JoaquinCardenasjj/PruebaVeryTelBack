@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,8 +26,12 @@ SECRET_KEY = 'django-insecure-cgj+m%1t(=nh__(^cb(zdt7e0of5d-(5e66h#*o$)x74$y)taj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # DEBE IR LO MÁS ARRIBA POSIBLE
+    'django.middleware.common.CommonMiddleware', # Justo antes de CommonMiddleware
+]
 
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -40,6 +45,7 @@ INSTALLED_APPS = [
     'cameras',
     'rest_framework',
     'django_filters',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -76,16 +82,26 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+# 1. Definición estándar (Producción/Desarrollo)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tuayudai_prueba_verytel',
-        'USER': 'tuayudai_jjcard',
-        'PASSWORD': 'w95#KH1HLjsv8*',
-        'HOST': '207.180.228.28',
-        'PORT': '3306',
+        'NAME': 'fdsf',
+        'USER': 'sfds',
+        'PASSWORD': 'fdsfdsfds*',
+        'HOST': 'fdsfdfds',
+        'PORT': '3306', # Asegúrate de que sea un string o int válido
     }
 }
+
+# 2. Override para Pruebas Unitarias
+# Si ejecutamos 'python manage.py test', entra en este bloque
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:', # Base de datos ultra rápida en RAM
+    }
 
 
 # Password validation
