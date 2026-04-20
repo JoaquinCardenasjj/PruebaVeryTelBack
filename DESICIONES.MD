@@ -56,9 +56,7 @@ Diagrama de Arquitectura
  4. Decisiones de Diseño (Trade-offs)ID Manual vs Auto-incremental: Se decidió usar un CharField para id_camera
  (e.g., CAM-001) para facilitar la búsqueda por parte de los operadores, asumiendo el compromiso de validar manualmente 
  la unicidad.Soft Delete: Se implementó is_deleted = BooleanField en lugar de un borrado físico para preservar el historial
- de tickets asociados, cumpliendo con la integridad referencial. ¿Qué haría diferente con más tiempo? 
- Implementar autenticación basada en JWT (JSON Web Tokens).Agregar Redis para cachear los reportes del Dashboard,
- ya que las agregaciones pueden volverse costosas con miles de registros.Dockerizar la solución completa para un despliegue más rápido.
+ de tickets asociados, cumpliendo con la integridad referencial.  
  5. Tiempo Invertido (Estimado)
  MóduloTiempo EstimadoConfiguración de entorno y Base de Datos 2 horas
  Backend: CRUD Cámaras y Soft Delete 1.5 horas
@@ -66,5 +64,10 @@ Diagrama de Arquitectura
  Backend: Endpoints de Reportes y KPIs 1 horas 
  Total 5 horas
  Publicacion codigo backend 3.5 horas
+ 
+ ¿Qué haría diferente con más tiempo? 
+ Implementar autenticación basada en JWT (JSON Web Tokens).Agregar Redis para cachear los reportes del Dashboard,
+ ya que las agregaciones pueden volverse costosas con miles de registros.Dockerizar la solución completa para un despliegue más rápido.
+ Encriptar datos sensibles en apoyo con un archivo .env instalando pip install python-dotenv
  
 	  
